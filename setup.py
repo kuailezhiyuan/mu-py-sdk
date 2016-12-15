@@ -7,9 +7,13 @@ install_requires = [
     "setuptools >= 0.7.0",
 ]
 
+packages = [
+    'musdk', 
+]
+
 setup(
     name="musdk",
-    version="0.0.4",
+    version="0.0.5",
     license='MIT',
     description="ss-panel mu api sdk for python",
     author='orvice',
@@ -18,6 +22,7 @@ setup(
     package_data={
         'mu=sdk': ['README.md', 'LICENSE']
     },
+    packages=packages,
     install_requires=install_requires, 
     long_description= "",
     classifiers=[ 
