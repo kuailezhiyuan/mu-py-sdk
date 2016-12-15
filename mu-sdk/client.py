@@ -43,4 +43,4 @@ class Client:
 
         res = conn.getresponse()
         data = res.read()
-        return data
+        return data.decode('utf-8')
