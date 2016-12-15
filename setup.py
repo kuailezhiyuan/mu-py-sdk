@@ -9,7 +9,7 @@ install_requires = [
 
 setup(
     name="mu-sdk",
-    version="0.0.2",
+    version="0.0.3",
     license='https://opensource.org/licenses/MIT',
     description="ss-panel mu api sdk for python",
     author='orvice',
