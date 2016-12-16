@@ -13,7 +13,7 @@ packages = [
 
 setup(
     name="musdk",
-    version="0.0.5",
+    version="0.0.6",
     license='MIT',
     description="ss-panel mu api sdk for python",
     author='orvice',
