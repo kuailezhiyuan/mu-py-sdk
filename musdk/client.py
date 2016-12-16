@@ -1,8 +1,5 @@
-import json
-from user import User
-from urllib.parse import urlparse
-import http.client
 import requests
+import simplejson
 
 
 class Client:
@@ -16,10 +13,10 @@ class Client:
         self._muKey = mu_key
 
     def _gen_users_url(self):
-        return "%s/nodes/%d/users".format(self._muUrl, self._nodeId)
+        return "{0}/nodes/{1}/users".format(self._muUrl, self._nodeId)
 
     def _gen_node_traffic_url(self):
-        return "%s/nodes/%d/traffic".format(self._muUrl, self._nodeId)
+        return "{0}/nodes/{1}/traffic".format(self._muUrl, self._nodeId)
 
     def _gen_headers(self):
         headers = {
@@ -30,17 +27,24 @@ class Client:
     def get_url(self):
         return self._muUrl
 
-    def update_traffic(self):
-        pass
+    def gen_traffic_log(self, user_id, u, d):
+        return {
+            "user_id": user_id,
+            "u": u,
+            "d": d,
+        }
+
+    def update_traffic(self, data):
+        data_json = simplejson.dumps(data)
+        payload = {'json_payload': data_json}
+        uri = self._gen_node_traffic_url()
+        r = requests.post(uri, data=payload, headers=self._gen_headers())
+        if r.status_code != 200:
+            return False
+        return True
 
     def get_users_res(self):
-        url = self._gen_users_url()
-        o = urlparse(url)
-
-        conn = http.client.HTTPConnection(o.netloc)
-        headers = self._gen_headers()
-        conn.request("GET", o.path, headers=headers)
-
-        res = conn.getresponse()
-        data = res.read()
-        return data.decode('utf-8')
+        r = requests.get(self._gen_users_url(), headers=self._gen_headers())
+        if r.status_code != 200:
+            return None
+        return r.json()['data']

@@ -1,14 +1,14 @@
 from setuptools import setup
 
-
-install_requires = [ 
+install_requires = [
     "requests >= 2.5.0",
     "requests-toolbelt >= 0.5.1",
     "setuptools >= 0.7.0",
+    "simplejson >= 3.1.0",
 ]
 
 packages = [
-    'musdk', 
+    'musdk',
 ]
 
 setup(
@@ -23,9 +23,9 @@ setup(
         'mu=sdk': ['README.md', 'LICENSE']
     },
     packages=packages,
-    install_requires=install_requires, 
-    long_description= "",
-    classifiers=[ 
+    install_requires=install_requires,
+    long_description="",
+    classifiers=[
         "Natural Language :: English",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX",
