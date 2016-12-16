@@ -18,4 +18,4 @@ def init_mu_client():
     mu_token = "ThisNotToken"
     mu_client = client.Client(mu_url, mu_token)
 
-``
+```

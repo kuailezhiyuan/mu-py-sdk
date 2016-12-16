@@ -2,23 +2,24 @@ import json
 from user import User
 from urllib.parse import urlparse
 import http.client
+import requests
 
 
 class Client:
     _muUrl = ''
     _muKey = ''
+    _nodeId = 1
 
-    def __init__(self, mu_url, mu_key):
+    def __init__(self, mu_url, node_id, mu_key):
         self._muUrl = mu_url
+        self._nodeId = node_id
         self._muKey = mu_key
 
     def _gen_users_url(self):
-        url = self._muUrl + "/users"
-        return url
+        return "%s/nodes/%d/users".format(self._muUrl, self._nodeId)
 
-    def _gen_user_url(self, user_id):
-        url = self._muUrl + "/users/" + user_id
-        return url
+    def _gen_node_traffic_url(self):
+        return "%s/nodes/%d/traffic".format(self._muUrl, self._nodeId)
 
     def _gen_headers(self):
         headers = {
@@ -29,9 +30,8 @@ class Client:
     def get_url(self):
         return self._muUrl
 
-    def new_user(self):
-        user = User
-        user.update_traffic(user)
+    def update_traffic(self):
+        pass
 
     def get_users_res(self):
         url = self._gen_users_url()
