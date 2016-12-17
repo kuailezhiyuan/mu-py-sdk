@@ -35,10 +35,8 @@ class Client:
         }
 
     def update_traffic(self, data):
-        data_json = simplejson.dumps(data)
-        payload = {'json_payload': data_json}
         uri = self._gen_node_traffic_url()
-        r = requests.post(uri, data=payload, headers=self._gen_headers())
+        r = requests.post(uri, json=data, headers=self._gen_headers())
         if r.status_code != 200:
             return False
         return True
